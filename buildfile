@@ -1,7 +1,7 @@
 
 VERSION_NUMBER = "1.0.0"
 
-GROUP = "company"
+GROUP = "project"
 COPYRIGHT = "LTD"
 
 ACTIVATION 			= 'javax.activation:activation:jar:1.1'
@@ -146,7 +146,7 @@ define "Project" do
 		package(:jar, :id=>"Common")
 	end
 	
-	desc 'Building API (Grroo) project'
+	desc 'Building API project'
 	define 'Grroo' do
 		# specify the artifact for plimus, twilio and floristone since I created it locally
 		plimus = artifact('plimus.com:plimus:jar:1.0').from('/var/lib/selfdep/wsintegration.jar')
@@ -211,6 +211,7 @@ define "Project" do
 		sh "sleep 3"
 		cp engine.to_s, engine_full_jar
 		sh "sleep 3"
-		sh "java -jar " + engine_full_jar + " &"
+		puts "starting engine" if verbose
+		sh "nohup java -jar  " + engine_full_jar + "  \&> /var/log/engine/dev/startengine.log \&"
 	end
 end
