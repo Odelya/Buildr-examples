@@ -1,0 +1,1 @@
+buildr clean build package Project:copy_files test:Suite junit:report test=all --verbose --trace
